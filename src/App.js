@@ -1,5 +1,7 @@
+import Login from "./components/login/login";
+
 function App() {
-	return <div className="badge"></div>;
+	return <Login />;
 }
 
 export default App;
