@@ -1,9 +1,37 @@
+import axios from "axios";
 import React, {Fragment} from "react";
 import PageTitle from "../common/PageTitle";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import {Col, Row, Card, CardBody, Button, Form, FormGroup, Label, Input} from "reactstrap";
+import {Col, Row, Card, CardBody, Button, Form, FormGroup, Label, Input, FormFeedback} from "reactstrap";
 
 export default class Login extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			email: "",
+			password: "",
+			validation: {email: [false, ""]},
+		};
+	}
+
+	handleChange = (e) => {
+		let state = this.state;
+		state[e.target.name] = e.target.value;
+		this.setState(state);
+	};
+
+	login = () => {
+		axios
+			.post(`http://localhost:8000/login`, {username: this.state.username, password: this.state.password})
+			.then((res) => {
+				console.log(res.data);
+				localStorage.setItem("token", res.data.token);
+			})
+			.catch((err) => {
+				console.log(err.response.data);
+			});
+	};
+
 	render() {
 		return (
 			<Fragment>
@@ -19,26 +47,33 @@ export default class Login extends React.Component {
 							<PageTitle
 								icon="pe-7s-headphones"
 								heading="Reliance IT Technical Support"
-								subheading="We help you ease your digital life"
+								subheading="We help you to make your digital life easier"
 							/>
 							<Card className="main-card">
 								<CardBody>
-									<Form>
+									<Form onSubmit={this.login}>
 										<Row form>
 											<Col xm="6" sm="6" md="6" lg="6" xl="6">
 												<FormGroup>
-													<Label for="email">Email</Label>
-													<Input type="email" name="email" id="email" />
+													<Label for="username">User Name</Label>
+													<Input id="username" name="username" onChange={this.handleChange} />
+													<FormFeedback>Please enter a user name.</FormFeedback>
 												</FormGroup>
 											</Col>
 											<Col xm="6" sm="6" md="6" lg="6" xl="6">
 												<FormGroup>
 													<Label for="password">Password</Label>
-													<Input type="password" name="password" id="password" />
+													<Input
+														id="password"
+														type="password"
+														name="password"
+														onChange={this.handleChange}
+													/>
+													<FormFeedback>Please enter a password.</FormFeedback>
 												</FormGroup>
 											</Col>
 										</Row>
-										<Button color="success" className="mt-2">
+										<Button color="success" className="mt-2" onClick={this.login}>
 											Sign in
 										</Button>
 										<Button color="dark" className="mt-2 ml-2">
