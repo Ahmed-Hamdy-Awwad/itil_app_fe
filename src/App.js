@@ -1,7 +1,7 @@
-import Login from "./components/login/login";
+import LoginScene from "./components/login/login_scene";
 
 function App() {
-	return <Login />;
+	return <LoginScene />;
 }
 
 export default App;
