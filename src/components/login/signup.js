@@ -8,25 +8,25 @@ export default class Signup extends React.Component {
 				<CardBody>
 					<Form onSubmit={this.props.signup}>
 						<Row form>
-							<Col xm="6" sm="6" md="6" lg="6" xl="6">
+							<Col xm="12" sm="12" md="12" lg="12" xl="12">
 								<FormGroup>
 									<Label for="username">User Name</Label>
 									<Input id="username" name="username" onChange={this.props.handlechange} />
 									<FormFeedback>Please enter a user name.</FormFeedback>
 								</FormGroup>
 							</Col>
-							<Col xm="6" sm="6" md="6" lg="6" xl="6">
-								<FormGroup>
-									<Label for="password">Password</Label>
-									<Input id="password" type="password" name="password" onChange={this.props.handlechange} />
-									<FormFeedback>Please enter a password.</FormFeedback>
-								</FormGroup>
-							</Col>
-							<Col xm="6" sm="6" md="6" lg="6" xl="6">
+							<Col xm="12" sm="12" md="12" lg="12" xl="12">
 								<FormGroup>
 									<Label for="email">Email</Label>
 									<Input id="email" type="email" name="email" onChange={this.props.handlechange} />
 									<FormFeedback>Please enter an email.</FormFeedback>
+								</FormGroup>
+							</Col>
+							<Col xm="12" sm="12" md="12" lg="12" xl="12">
+								<FormGroup>
+									<Label for="password">Password</Label>
+									<Input id="password" type="password" name="password" onChange={this.props.handlechange} />
+									<FormFeedback>Please enter a password.</FormFeedback>
 								</FormGroup>
 							</Col>
 						</Row>

@@ -14,6 +14,9 @@ export default class LoginScene extends React.Component {
 			username: "",
 			password: "",
 			hidden: true,
+			nameValidation: {phrase: "", validity: null},
+			passwordValidation: {phrase: "", validity: null},
+			credentialsValidation: {phrase: "", validity: true},
 		};
 	}
 
@@ -24,9 +27,41 @@ export default class LoginScene extends React.Component {
 	};
 
 	login = () => {
-		console.log(this.state);
+		if (!this.state.hidden) {
+			this.setState({hidden: !this.state.hidden});
+			return;
+		}
 		axios
-			.post(`http://localhost:8000/login`, {username: this.state.username, password: this.state.password})
+			.post(`login`, {username: this.state.username, password: this.state.password})
+			.then((res) => {
+				localStorage.setItem("token", res.data.token);
+			})
+			.catch((err) => {
+				let validation = err.response.data;
+				if (validation.username) {
+					this.setState({nameValidation: {phrase: validation.username[0], validity: true}});
+				} else this.setState({nameValidation: {phrase: "", validity: false}});
+				if (validation.password) {
+					this.setState({passwordValidation: {phrase: validation.password[0], validity: true}});
+				} else this.setState({passwordValidation: {phrase: "", validity: false}});
+				if (validation.non_field_errors) {
+					this.setState({
+						credentialsValidation: {phrase: validation.non_field_errors[0], validity: false},
+					});
+				} else
+					this.setState({
+						credentialsValidation: {phrase: "", validity: true},
+					});
+			});
+	};
+
+	signup = () => {
+		if (this.state.hidden) {
+			this.setState({hidden: !this.state.hidden});
+			return;
+		}
+		axios
+			.post(`signup`, {username: this.state.username, password: this.state.password, email: this.state.email})
 			.then((res) => {
 				console.log(res.data);
 				localStorage.setItem("token", res.data.token);
@@ -34,10 +69,6 @@ export default class LoginScene extends React.Component {
 			.catch((err) => {
 				console.log(err.response.data);
 			});
-	};
-
-	signup = () => {
-		this.setState({hidden: !this.state.hidden});
 	};
 
 	render() {
@@ -62,6 +93,9 @@ export default class LoginScene extends React.Component {
 								signup={this.signup}
 								hidden={!this.state.hidden}
 								handlechange={this.handleChange}
+								namevalidation={this.state.nameValidation}
+								passwordvalidation={this.state.passwordValidation}
+								credentialsvalidation={this.state.credentialsValidation}
 							/>
 							<Signup
 								login={this.login}
