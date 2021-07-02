@@ -1,5 +1,7 @@
+import LoginScene from "./components/login/login_scene";
+
 function App() {
-	return <div className="badge"></div>;
+	return <LoginScene />;
 }
 
 export default App;
