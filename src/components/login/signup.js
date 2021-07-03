@@ -36,7 +36,7 @@ export default class Signup extends React.Component {
 					let validation = this.state.validation;
 					validation.username = {validity: true, feedBackMessage: err.response.data.username};
 					this.setState({validation: validation});
-				}
+				} else console.log(err.response.data);
 			});
 	};
 
@@ -67,7 +67,7 @@ export default class Signup extends React.Component {
 										invalid={
 											this.state.validation.username
 												? toString(this.state.validation.username.validity)
-												: false
+												: "false"
 										}>
 										{this.state.validation.username ? this.state.validation.username.feedBackMessage : ""}
 									</FormFeedback>
@@ -89,7 +89,7 @@ export default class Signup extends React.Component {
 									/>
 									<FormFeedback
 										invalid={
-											this.state.validation.email ? toString(this.state.validation.email.validity) : false
+											this.state.validation.email ? toString(this.state.validation.email.validity) : "false"
 										}>
 										{this.state.validation.email ? this.state.validation.email.feedBackMessage : ""}
 									</FormFeedback>
@@ -113,14 +113,14 @@ export default class Signup extends React.Component {
 										invalid={
 											this.state.validation.password
 												? toString(this.state.validation.password.validity)
-												: false
+												: "false"
 										}>
 										{this.state.validation.password ? this.state.validation.password.feedBackMessage : ""}
 									</FormFeedback>
 								</FormGroup>
 							</Col>
 						</Row>
-						<Button color="success" className="mt-2" onClick={this.props.login}>
+						<Button color="success" className="mt-2" onClick={this.props.switchforms}>
 							Sign in
 						</Button>
 						<Button color="dark" className="mt-2 ml-2" type="submit">
