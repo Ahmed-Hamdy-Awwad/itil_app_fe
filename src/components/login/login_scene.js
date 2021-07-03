@@ -56,19 +56,7 @@ export default class LoginScene extends React.Component {
 	};
 
 	signup = () => {
-		if (this.state.hidden) {
-			this.setState({hidden: !this.state.hidden});
-			return;
-		}
-		axios
-			.post(`signup`, {username: this.state.username, password: this.state.password, email: this.state.email})
-			.then((res) => {
-				console.log(res.data);
-				localStorage.setItem("token", res.data.token);
-			})
-			.catch((err) => {
-				console.log(err.response.data);
-			});
+		if (this.state.hidden) this.setState({hidden: !this.state.hidden});
 	};
 
 	render() {
@@ -97,12 +85,7 @@ export default class LoginScene extends React.Component {
 								passwordvalidation={this.state.passwordValidation}
 								credentialsvalidation={this.state.credentialsValidation}
 							/>
-							<Signup
-								login={this.login}
-								signup={this.signup}
-								hidden={this.state.hidden}
-								handlechange={this.handleChange}
-							/>
+							<Signup login={this.login} signup={this.signup} hidden={this.state.hidden} />
 						</Col>
 					</Row>
 				</ReactCSSTransitionGroup>
