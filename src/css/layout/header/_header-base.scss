@@ -1,71 +1,71 @@
 // Header Base
 
 .app-header {
-  height: $app-header-height;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  position: relative;
-  z-index: 10;
-  transition: all .2s;
+	height: $app-header-height;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	position: relative;
+	z-index: 10;
+	transition: all 0.2s;
 
-  &.header-shadow {
-    box-shadow: $box-shadow-default;
-  }
+	&.header-shadow {
+		box-shadow: $box-shadow-default;
+	}
 
-  .app-header__content {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    flex: 1;
-    padding: 0 $layout-spacer-x;
-    height: $app-header-height;
+	.app-header__content {
+		display: flex;
+		align-items: center;
+		align-content: center;
+		flex: 1;
+		padding: 0 $layout-spacer-x;
+		height: $app-header-height;
 
-    .app-header-left {
-      display: flex;
-      align-items: center;
-    }
+		.app-header-left {
+			display: flex;
+			align-items: center;
+		}
 
-    .app-header-right {
-      align-items: center;
-      display: flex;
-      margin-left: auto;
-    }
-  }
+		.app-header-right {
+			align-items: center;
+			display: flex;
+			margin-left: auto;
+		}
+	}
 
-  .header-user-info {
-    & > .widget-heading,
-    & > .widget-subheading {
-      white-space: nowrap;
-    }
+	.header-user-info {
+		& > .widget-heading,
+		& > .widget-subheading {
+			white-space: nowrap;
+		}
 
-    & > .widget-subheading {
-      font-size: $font-size-xs;
-    }
-  }
+		& > .widget-subheading {
+			font-size: $font-size-xs;
+		}
+	}
 }
 
 .app-header__logo {
-  padding: 0 $layout-spacer-x;
-  height: $app-header-height;
-  width: $app-sidebar-width;
-  display: flex;
-  align-items: center;
-  transition: width .2s;
+	padding: 0 $layout-spacer-x;
+	height: $app-header-height;
+	width: $app-sidebar-width;
+	display: flex;
+	align-items: center;
+	transition: width 0.2s;
 
-  .logo-src {
-    height: $logo-height;
-    width: $logo-width;
-    background: url('~assets/utils/images/logo-inverse.png');
-  }
+	.logo-src {
+		height: $logo-height;
+		width: $logo-width;
+		background: url("");
+	}
 }
 
 .app-header__menu,
 .app-header__mobile-menu {
-  display: none;
-  padding: 0 $layout-spacer-x;
-  height: $app-header-height;
-  align-items: center;
+	display: none;
+	padding: 0 $layout-spacer-x;
+	height: $app-header-height;
+	align-items: center;
 }
 
 // Header Modifiers

@@ -4,7 +4,7 @@ export default class PageTitle extends Component {
 	render() {
 		let {heading, icon, subheading} = this.props;
 		return (
-			<div className="app-page-title">
+			<div className="app-page-title mb-0">
 				<div className="page-title-wrapper">
 					<div className="page-title-heading">
 						<div className="page-title-icon">
