@@ -10730,6 +10730,7 @@ button,
 	flex: 0 0 280px;
 	margin-top: -60px;
 	padding-top: 60px;
+	padding-bottom: 558px;
 	transition: all 0.2s;
 }
 .app-sidebar .app-sidebar__inner {
@@ -11853,6 +11854,10 @@ button,
 }
 
 .bg-premium-dark {
+	background-image: linear-gradient(to right, #434343 0%, black 100%) !important;
+}
+
+.bg-premium-dark-sb {
 	background-image: linear-gradient(to left, #434343 0%, black 100%) !important;
 }
 
