@@ -26,7 +26,7 @@ export default class LoginScene extends React.Component {
 				transitionLeave={false}
 				transitionAppearTimeout={0}
 				transitionName="TabsAnimation">
-				<Row style={{justifyContent: "center", marginTop: "190px"}}>
+				<Row style={{justifyContent: "center", marginTop: "150px"}}>
 					<Col xm="12" sm="12" md="12" lg="6" xl="6">
 						<PageTitle
 							icon="pe-7s-headphones"
