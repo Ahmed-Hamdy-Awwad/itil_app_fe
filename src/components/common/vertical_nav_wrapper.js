@@ -6,6 +6,7 @@ class Nav extends Component {
 	render() {
 		return (
 			<MetisMenu
+				iconNamePrefix=""
 				activeLinkFromLocation
 				content={ComponentsNav}
 				className="vertical-nav-menu"
