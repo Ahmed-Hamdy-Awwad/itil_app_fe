@@ -5,7 +5,7 @@ export const ComponentsNav = [
 		content: [
 			{
 				label: "New Ticket",
-				to: "#/elements/buttons-standard",
+				to: "#/newticket",
 			},
 			{
 				label: "View Tickets",
