@@ -9,7 +9,7 @@ export const ComponentsNav = [
 			},
 			{
 				label: "View Tickets",
-				to: "#/elements/dropdowns",
+				to: "#/viewticket",
 			},
 			{
 				label: "Search Tickets",
