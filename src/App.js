@@ -7,8 +7,6 @@ import ViewTicketScene from "./components/ticket/view_ticket_scene";
 
 function App() {
 	if (localStorage.getItem("token")) {
-		return <LoginScene />;
-	} else
 		return (
 			<div>
 				<Header />
@@ -16,7 +14,6 @@ function App() {
 					<AppSidebar />
 					<div className="app-main__outer">
 						<div className="app-main__inner">
-							<Route path="/home" component={LoginScene} />
 							<Route path="/newticket" component={NewTicketScene} />
 							<Route path="/viewticket" component={ViewTicketScene} />
 						</div>
@@ -24,6 +21,7 @@ function App() {
 				</div>
 			</div>
 		);
+	} else return <LoginScene />;
 }
 
 export default App;

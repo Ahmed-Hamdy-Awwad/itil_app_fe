@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
-import {Col, Row, Card, CardBody, Button, Form, FormGroup, Label, Input, FormFeedback} from "reactstrap";
+import { Col, Row, Card, CardBody, Button, Form, FormGroup, Label, Input, FormFeedback } from "reactstrap";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -14,14 +14,14 @@ export default class Login extends React.Component {
 	setValidation = (e, validity) => {
 		e.preventDefault();
 		let validation = this.state.validation;
-		validation[e.target.name] = {validity: validity, feedBackMessage: e.target.validationMessage};
-		this.setState({validation: validation});
+		validation[e.target.name] = { validity: validity, feedBackMessage: e.target.validationMessage };
+		this.setState({ validation: validation });
 	};
 
 	handleChange = (e) => {
 		let data = this.state.data;
 		data[e.target.name] = e.target.value;
-		this.setState({data: data});
+		this.setState({ data: data });
 	};
 
 	login = (e) => {
@@ -30,14 +30,15 @@ export default class Login extends React.Component {
 			.post(`login`, this.state.data)
 			.then((res) => {
 				localStorage.setItem("token", res.data.token);
+				window.location.reload();
 			})
 			.catch((err) => {
 				if (err.response.data.non_field_errors) {
 					let validation = this.state.validation;
-					validation.username = {validity: true, feedBackMessage: err.response.data.non_field_errors[0]};
-					validation.password = {validity: true, feedBackMessage: err.response.data.non_field_errors[0]};
-					this.setState({validation: validation});
-				} else console.log(err.response.data);
+					validation.username = { validity: true, feedBackMessage: err.response.data.non_field_errors[0] };
+					validation.password = { validity: true, feedBackMessage: err.response.data.non_field_errors[0] };
+					this.setState({ validation: validation });
+				} else console.error(err.response.data);
 			});
 	};
 
@@ -111,3 +112,4 @@ export default class Login extends React.Component {
 		);
 	}
 }
+export default Login;
