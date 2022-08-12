@@ -29,7 +29,7 @@ export default class NewTicket extends React.Component {
 		axios
 			.post(`ticket/`, this.state.data)
 			.then((res) => {
-				console.log(res.data);
+				if (res) window.location = "http://localhost:3000/#/viewticket";
 			})
 			.catch((err) => {
 				if (err.response.data.non_field_errors) {

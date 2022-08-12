@@ -1,41 +1,58 @@
-import { Button } from "reactstrap";
+import axios from "axios";
 import React, { Component } from "react";
+import { Button, Input } from "reactstrap";
 import { Row, Col, Card, CardTitle } from "reactstrap";
 
-class TicketCard extends Component {
+class ViewTicket extends Component {
+	constructor() {
+		super();
+		this.state = {
+			data: null,
+		};
+	}
+
+	updateTicket = (e) => {
+		axios.patch(`ticket/${e.target.id}/`, { description: e.target.value });
+	};
+
+	deleteTicket = (e) => {
+		axios.delete(`ticket/${e.target.id}`).then(window.location.reload());
+	};
+
+	componentDidMount() {
+		axios
+			.get("ticket/?serializer=get")
+			.then((res) => {
+				if (res) this.setState({ data: res.data });
+			})
+			.catch((err) => {
+				console.error(err.response);
+			});
+	}
+
 	render() {
+		const colors = { Pending: "warning", Opened: "dark", Closed: "success" };
 		return (
-			<Row>
-				<Col md="4">
-					<Card className="mb-3 card-shadow-success border" body outline color="warning">
-						<CardTitle>Special Title Treatment</CardTitle>
-						<p>With supporting text below as a natural lead-in to additional content.</p>
-						<Button outline color="warning">
-							Details
-						</Button>
-					</Card>
-				</Col>
-				<Col md="4">
-					<Card className="mb-3 card-shadow-success border" body outline color="dark">
-						<CardTitle>Special Title Treatment</CardTitle>
-						<p>With supporting text below as a natural lead-in to additional content.</p>
-						<Button outline color="dark">
-							Details
-						</Button>
-					</Card>
-				</Col>
-				<Col md="4">
-					<Card className="mb-3 card-shadow-success border" body outline color="success">
-						<CardTitle>Special Title Treatment</CardTitle>
-						<p>With supporting text below as a natural lead-in to additional content.</p>
-						<Button outline color="success">
-							Details
-						</Button>
-					</Card>
-				</Col>
-			</Row>
+			this.state.data && (
+				<Row>
+					{this.state.data.map((ticket) => {
+						return (
+							<Col md="4" key={ticket.id}>
+								<Card className="mb-3 card-shadow-success border" body outline color={colors[ticket.status]}>
+									<CardTitle>{ticket.reporter ? ticket.reporter.first_name : "Anonymous"}</CardTitle>
+									<Input defaultValue={ticket.description} id={ticket.id} onBlur={this.updateTicket} />
+									<p className="mt-1">Move out of the field to update</p>
+									<Button outline color="danger" className="mt-2" id={ticket.id} onClick={this.deleteTicket}>
+										Delete
+									</Button>
+								</Card>
+							</Col>
+						);
+					})}
+				</Row>
+			)
 		);
 	}
 }
 
-export default TicketCard;
+export default ViewTicket;
